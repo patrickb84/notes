@@ -2,7 +2,7 @@
 
 This documents the Donut and horizontal progress stat components displayed prominently in the Spotlight tab of the KPI dashboard.
 
-## Donut/Radial/Pie Gauge
+## 🍩 Donut/Radial/Pie Gauge
 
 There's javascript class called `DonutChart` in `donut-chart.js`.
 
@@ -139,7 +139,7 @@ Example:
 }
 ```
 
-## Progress Stats (Single/Group)
+## ➡️ Progress Stats (Single/Group)
 
 There is a javascript class called `ProgressStat` in `progress-stat.js`. A progress stat is a single component that has an icon, a horizontal progress bar that comprised of 2 to 3 bars (the first being the maximum containing bar), bar labels and an indicator.
 
