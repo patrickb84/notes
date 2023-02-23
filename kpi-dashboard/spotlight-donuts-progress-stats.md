@@ -1,8 +1,10 @@
 # KPI Dashboard Notes
 
+This documents the Donut and horizontal progress stat components displayed prominently in the Spotlight tab of the KPI dashboard.
+
 ## Donut/Radial/Pie Gauge
 
-There's javascript class called `DonutChart` in `donut-chart.js`
+There's javascript class called `DonutChart` in `donut-chart.js`.
 
 ### Argument Structure
 
