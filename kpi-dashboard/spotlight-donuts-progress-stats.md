@@ -6,7 +6,7 @@ This documents the Donut and horizontal progress stat components displayed promi
 
 There's javascript class called `DonutChart` in `donut-chart.js`.
 
-### Argument Structure
+### Donut Chart - Argument Structure
 
 It takes a blob of arguments structered as:
 
@@ -27,7 +27,7 @@ type DonutChartArgs = {
 };
 ```
 
-#### Argument Details
+#### Donut Chart - Argument Details
 
 - `selector` should be the ID of the HTML element you are targetting.
 - `options.radius` is now always `137.5` but is not reflected in the code and should be passed in as `137.5`.
@@ -39,7 +39,7 @@ type DonutChartArgs = {
 - `[data].value` determines the length of the segment.
 - `[data].formattedValue` shows up as a value in the metric keys below the chart.
 
-#### Examples
+#### Donut Chart - Examples
 
 The following is what is currently being passed in, and an example of how the data should be structured. *Note* that the class is instantiated with the `new` keyword.
 
@@ -113,7 +113,7 @@ For reference, the serialized form also works:
 }
 ```
 
-#### Segment Values
+#### Donut Chart - Segment Values
 
 - `value` can accept negative numbers. The segment will be colored red automatically.
 - `isGrayed` is an optional value. If set to `true` the segment value will be light gray, and the corresponding metric key value will be colored a darker gray. It represents the concept of a _budgetted value_, i.e. a fixed maximum.
@@ -137,13 +137,13 @@ Example:
 }
 ```
 
-## Progress Stats (Single/Group) ➡️
+## Progress Stat (Single/Group) ➡️
 
 There is a javascript class called `ProgressStat` in `progress-stat.js`. A progress stat is a single component that has an icon, a horizontal progress bar that comprised of 2 to 3 bars (the first being the maximum containing bar), bar labels and an indicator.
 
 It also has a method for creating a list group of progress-stats which is described first since it will be the one more commonly used.
 
-### Progress Stat Group
+### Progress Stat - Group
 
 There is a method called `ProgressStat.createGroup(...)`. It takes a blob argument structed as:
 
@@ -170,13 +170,13 @@ ProgressStat.createGroup({
 })
 ```
 
-#### Details
+#### Progress Stat - Group - Details
 
 - `selector` is the HTML element in the `.kpi-tile-body` element to be targetted.
 - `title` optional. Fills in the `h3` element above the group.
 - `progressStats` the array of single-progress-stat arguments.
 
-#### Example
+#### Progress Stat - Group - Example
 
 The following is an example of a progress-stat-group with 2 progress stats.
 
@@ -232,9 +232,9 @@ The following is an example of a progress-stat-group with 2 progress stats.
 ```
 
 
-### Single Progress Stat Arguments
+### Progress Stat - Individual
 
-It takes a blob of arguments structured as:
+An individual progress-stat component is instantiated with a blob of arguments structured as:
 
 ```typescript
 type SingleProgressStatArgs = {
@@ -261,7 +261,7 @@ new ProgressStat({ ...SingleProgressStatArgs }) // or
 new ProgressStat(SingleProgressStatArgs)
 ```
 
-#### Argument Details
+#### Progress Stat - Individual - Argument Details
 
 - `selector` should be the ID of the HTML element you are targetting.
 - `options.img` optional. Shows up on the left side of the bar.
@@ -274,15 +274,15 @@ new ProgressStat(SingleProgressStatArgs)
 - `[data].value` determines the length of the bar.
 - `[data].formattedValue` appears next to the label created by `name`.
 
-#### Multi-Variable bars
+#### Progress Stat - Individual - Multi-Variable bars
 
 There's always a maximum bar, typically "Budget", in `ProgressStat`. Multiple variables can be shown as bars (right now only 2).
 
-#### Bar colors
+#### Progress Stat - Individual - Bar colors
 
 The `ProgressStat` component will color the bar automatically according to percentage.
 
-#### Example
+#### Progress Stat - Individual - Example
 
 Here's an example of a progress-stat with multiple variables. A single variable bar would only have 2 items in the array.
 
