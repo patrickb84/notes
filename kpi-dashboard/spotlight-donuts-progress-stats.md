@@ -19,13 +19,11 @@ type DonutChartArgs = {
         innerValue: string;
         innerLabel: string;
     };
-    data: [
-        {
-            name: string;
-            value: number;
-            formattedValue: string;
-        }
-    ];
+    data: {
+        name: string;
+        value: number;
+        formattedValue: string;
+    }[]
 };
 ```
 
@@ -230,7 +228,7 @@ There is a method called `ProgressStat.createGroup(...)`. It takes a blob argume
 type ProgressStatGroupBlob = {
     selector: string
     title: string?
-    progressStats: SingleProgressStatArgs[]
+    progressStats: { ...SingleProgressStatArgs }[]
 }
 ```
 
