@@ -27,7 +27,7 @@ type DonutChartArgs = {
 };
 ```
 
-#### Donut Chart - Argument Details
+### Donut Chart - Argument Details
 
 - `selector` should be the ID of the HTML element you are targetting.
 - `options.radius` is now always `137.5` but is not reflected in the code and should be passed in as `137.5`.
@@ -39,7 +39,7 @@ type DonutChartArgs = {
 - `[data].value` determines the length of the segment.
 - `[data].formattedValue` shows up as a value in the metric keys below the chart.
 
-#### Donut Chart - Examples
+### Donut Chart - Examples
 
 The following is what is currently being passed in, and an example of how the data should be structured. *Note* that the class is instantiated with the `new` keyword.
 
@@ -113,7 +113,7 @@ For reference, the serialized form also works:
 }
 ```
 
-#### Donut Chart - Segment Values
+### Donut Chart - Segment Values
 
 - `value` can accept negative numbers. The segment will be colored red automatically.
 - `isGrayed` is an optional value. If set to `true` the segment value will be light gray, and the corresponding metric key value will be colored a darker gray. It represents the concept of a _budgetted value_, i.e. a fixed maximum.
@@ -230,7 +230,6 @@ The following is an example of a progress-stat-group with 2 progress stats.
     ]
 }
 ```
-
 
 ### Progress Stat - Individual
 
