@@ -2,7 +2,7 @@
 
 This documents the Donut and horizontal progress stat components displayed prominently in the Spotlight tab of the KPI dashboard.
 
-## 🍩 Donut/Radial/Pie Gauge
+## Donut Chart 🍩 
 
 There's javascript class called `DonutChart` in `donut-chart.js`.
 
@@ -137,88 +137,11 @@ Example:
 }
 ```
 
-## ➡️ Progress Stats (Single/Group)
+## Progress Stats (Single/Group) ➡️
 
 There is a javascript class called `ProgressStat` in `progress-stat.js`. A progress stat is a single component that has an icon, a horizontal progress bar that comprised of 2 to 3 bars (the first being the maximum containing bar), bar labels and an indicator.
 
-It also has a method for creating a list group of progress-stats.
-
-### Single Progress Stat Arguments
-
-It takes a blob of arguments structured as:
-
-```typescript
-type SingleProgressStatArgs = {
-    selector: string
-    options: {
-        img: URL
-        title: string
-        link: URL
-        formattedValue: string
-        formattedValueType: 'positive' | 'negative' | 'even' | null
-    },
-    data: {
-        name: string
-        formattedValue: string
-        value: number
-    }[]
-}
-```
-
-#### Argument Details
-
-- `selector` should be the ID of the HTML element you are targetting.
-- `options.img` optional. Shows up on the left side of the bar.
-- `options.title`
-- `options.link` optional. If present, the title becomes a link to this URL.
-- `options.formattedValue` optional. This shows up on the right side of the bar, typically as a percentage like "18%" and an arrow icon if needed.
-- `options.formattedValueType` optional. If `formattedValue` is present, it adds color and an arrow according to type.
-- `[data]` is an array of data series that help describe the bar properties. *Data must be sorted from the maximum value series to the least to line up the labels*.
-- `[data].name` shows up as a label below the bar with a dot that matches the color of the bar being described.
-- `[data].value` determines the length of the bar.
-- `[data].formattedValue` appears next to the label created by `name`.
-
-#### Multi-Variable bars
-
-There's always a maximum bar, typically "Budget", in `ProgressStat`. Multiple variables can be shown as bars (right now only 2).
-
-#### Bar colors
-
-The `ProgressStat` component will color the bar automatically according to percentage.
-
-#### Example
-
-Here's an example of a progress-stat with multiple variables. A single variable bar would only have 2 items in the array.
-
-```json
-{
-    "selector": "#Tile2__ProgressStats",
-    "data": [
-        {
-            "name": "Budget",
-            "formattedValue": "$5K",
-            "value": 100
-        },
-        {
-            "name": "Invoiced",
-            "formattedValue": "$5K",
-            "value": 97
-        },
-        {
-            "name": "Paid",
-            "formattedValue": "$5K",
-            "value": 90
-        }
-    ],
-    "options": {
-        "img": "https://i.postimg.cc/PqrMKDJW/brand-academyboys.png",
-        "title": "2023 Country Lax Festival",
-        "link": "#",
-        "formattedValue": "18%",
-        "formattedValueType": "positive"
-    }
-}
-```
+It also has a method for creating a list group of progress-stats which is described first since it will be the one more commonly used.
 
 ### Progress Stat Group
 
@@ -230,6 +153,21 @@ type ProgressStatGroupBlob = {
     title: string?
     progressStats: { ...SingleProgressStatArgs }[]
 }
+```
+
+This is how it's called: 
+
+```js
+ProgressStat.createGroup({
+    selector: '#Tile2__ProgressStats',
+    title: 'Most Active Program Sales',
+    progressStats: [
+        { ...SingleProgressStatArgs },
+        { ...SingleProgressStatArgs },
+        { ...SingleProgressStatArgs }
+        // etc.
+    ]
+})
 ```
 
 #### Details
@@ -292,3 +230,89 @@ The following is an example of a progress-stat-group with 2 progress stats.
     ]
 }
 ```
+
+
+### Single Progress Stat Arguments
+
+It takes a blob of arguments structured as:
+
+```typescript
+type SingleProgressStatArgs = {
+    selector: string
+    options: {
+        img: URL
+        title: string
+        link: URL
+        formattedValue: string
+        formattedValueType: 'positive' | 'negative' | 'even' | null
+    },
+    data: {
+        name: string
+        formattedValue: string
+        value: number
+    }[]
+}
+```
+
+It wouldn't be a common occurence, but the way you instantiate `ProgressStat` is simply:
+
+```js
+new ProgressStat({ ...SingleProgressStatArgs }) // or
+new ProgressStat(SingleProgressStatArgs)
+```
+
+#### Argument Details
+
+- `selector` should be the ID of the HTML element you are targetting.
+- `options.img` optional. Shows up on the left side of the bar.
+- `options.title`
+- `options.link` optional. If present, the title becomes a link to this URL.
+- `options.formattedValue` optional. This shows up on the right side of the bar, typically as a percentage like "18%" and an arrow icon if needed.
+- `options.formattedValueType` optional. If `formattedValue` is present, it adds color and an arrow according to type.
+- `[data]` is an array of data series that help describe the bar properties. *Data must be sorted from the maximum value series to the least to line up the labels*.
+- `[data].name` shows up as a label below the bar with a dot that matches the color of the bar being described.
+- `[data].value` determines the length of the bar.
+- `[data].formattedValue` appears next to the label created by `name`.
+
+#### Multi-Variable bars
+
+There's always a maximum bar, typically "Budget", in `ProgressStat`. Multiple variables can be shown as bars (right now only 2).
+
+#### Bar colors
+
+The `ProgressStat` component will color the bar automatically according to percentage.
+
+#### Example
+
+Here's an example of a progress-stat with multiple variables. A single variable bar would only have 2 items in the array.
+
+```json
+{
+    "selector": "#Tile2__ProgressStats",
+    "data": [
+        {
+            "name": "Budget",
+            "formattedValue": "$5K",
+            "value": 100
+        },
+        {
+            "name": "Invoiced",
+            "formattedValue": "$5K",
+            "value": 97
+        },
+        {
+            "name": "Paid",
+            "formattedValue": "$5K",
+            "value": 90
+        }
+    ],
+    "options": {
+        "img": "https://i.postimg.cc/PqrMKDJW/brand-academyboys.png",
+        "title": "2023 Country Lax Festival",
+        "link": "#",
+        "formattedValue": "18%",
+        "formattedValueType": "positive"
+    }
+}
+```
+
